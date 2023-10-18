@@ -1,0 +1,57 @@
+/*Jenkins File For Declarative Syntax for CI/CD of Git Terraform */
+pipeline {
+    agent any
+    options {
+        timestamps() /*used to show the time  */
+    } 
+    stages {
+        stage('Clone Git Repo') {
+            steps {
+                sh 'rm -rf tf-singleInstance'
+                sh 'git clone git@github.com:rajasekhar2304/tf_iac.git'
+                sh 'cd tf_iac/dev && ls -al'
+                sh 'ls -al'
+            }
+        }       
+        stage('Terraform Plan') {
+            when {
+                    expression {
+                        params.PLAN == 'YES'
+                    }
+                }           
+            steps {
+                dir('tf_iac/dev') {
+                    sh 'terraform init'
+                    sh 'terraform plan'
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            when {
+                    expression {
+                        params.APPLY == 'YES'
+                    }
+                }           
+            steps {
+                dir('tf_iac/dev') {
+                    sh 'terraform init'
+                    sh 'terraform apply --auto-approve'
+                }
+            }
+        }
+        stage('Terraform Destroy') {
+            when {
+                    expression {
+                        params.DESTROY == 'YES'
+                    }
+                }
+            steps {
+                dir('tf_iac/dev') {
+                    sh 'terraform init'
+                    sh 'terraform destroy --auto-approve'
+                }
+            }
+        }
+    }
+ }
+ 
