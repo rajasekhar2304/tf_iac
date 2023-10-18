@@ -7,10 +7,9 @@ pipeline {
     stages {
         stage('Clone Git Repo') {
             steps {
-                sh 'rm -rf tf-singleInstance'
-                sh 'git clone git@github.com:rajasekhar2304/tf_iac.git'
-                sh 'cd tf_iac/dev && ls -al'
-                sh 'ls -al'
+                git branch: 'master',                    
+                    credentialsId: "RajaGithubAccess",
+                    url: 'https://github.com/rajasekhar2304/tf_iac.git'
             }
         }       
         stage('Terraform Plan') {
@@ -20,7 +19,7 @@ pipeline {
                     }
                 }           
             steps {
-                dir('tf_iac/dev') {
+                dir('dev') {
                     sh 'terraform init'
                     sh 'terraform plan'
                 }
