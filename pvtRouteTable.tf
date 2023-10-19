@@ -8,11 +8,11 @@ resource "aws_route_table_association" "pvtSubnet1" {
   subnet_id      = aws_subnet.demoProjectPvtSubnet-1.id
   route_table_id = aws_route_table.demoProjectPvtRT.id
 }
-resource "aws_route_table_association" "pubSubnet2" {
+resource "aws_route_table_association" "pvtSubnet2" {
   subnet_id      = aws_subnet.demoProjectPvtSubnet-2.id
   route_table_id = aws_route_table.demoProjectPvtRT.id
 }
-resource "aws_route_table_association" "pubSubnet3" {
+resource "aws_route_table_association" "pvtSubnet3" {
   subnet_id      = aws_subnet.demoProjectPvtSubnet-3.id
   route_table_id = aws_route_table.demoProjectPvtRT.id
 }
