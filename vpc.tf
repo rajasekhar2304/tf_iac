@@ -8,7 +8,7 @@ resource "aws_vpc" "demoProject" {
   }
 }
 resource "aws_internet_gateway" "demoProject" {
-  vpc_id = aws_vpc.demoProject
+  vpc_id = aws_vpc.demoProject.id
   tags = {
     Name = "${var.vpc_name}-IGW"
   }
