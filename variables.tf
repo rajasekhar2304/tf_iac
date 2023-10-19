@@ -3,7 +3,7 @@ variable "vpc_name" {}
 variable "created_by" {}
 variable "env" {}
 variable "region" {}
-variable pubSubnet1_cidr_block {}
+variable "pubSubnet1_cidr_block" {}
 variable "pubSubnet1Az" {}
 variable "pubSubnet2_cidr_block" {}
 variable "pubSubnet2Az" {}
