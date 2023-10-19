@@ -1,6 +1,6 @@
 resource "aws_route_table" "demoProjectPubRT" {
   vpc_id = aws_vpc.demoProject.id
-  route = {
+  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.demoProject.id
   }
